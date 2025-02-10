@@ -1,6 +1,17 @@
-import { promises } from "dns";
+import { Metadata } from "next";
 
-export default async function ProductPage({params} : {params : Promise<{id : string}>}) {
+type Props ={
+    params : Promise<{id : string}>
+}
+
+export const generateMetadata = async({ params }: Props) : Promise<Metadata> =>{
+const {id}  = await params;
+return {
+    title : `Product  ${id}`,
+}
+}
+
+export default async function ProductPage({params} : Props) {
     const productId = (await params).id
     return ( 
         <div>

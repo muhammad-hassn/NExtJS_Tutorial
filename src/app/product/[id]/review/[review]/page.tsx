@@ -1,6 +1,22 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
-export default async function ReviewPage({params} : {params : Promise<{id : number , review : string}>}) {
+
+
+type Iprops = {
+    params : Promise<{id : number , review : string }>;
+};
+
+// Dianamic Rout Meta Data 
+
+export const generateMetadata = async ({params} : Iprops) : Promise<Metadata> => {
+const {id , review} = await params ;
+return {
+    title : `id is ${id} and review is ${review}`,
+}
+}
+
+export default async function ReviewPage({params} : Iprops) {
     const {id , review} = await params;
 
     if (id > 1000 || parseInt(review) > 1000){
