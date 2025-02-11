@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import {  redirect} from "next/navigation";
 import { Metadata } from "next";
 
 
@@ -20,7 +20,7 @@ export default async function ReviewPage({params} : Iprops) {
     const {id , review} = await params;
 
     if (id > 1000 || parseInt(review) > 1000){
-    notFound();
+    redirect('/product');
     }
 
     return (
